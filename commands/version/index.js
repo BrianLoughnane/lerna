@@ -520,14 +520,14 @@ class VersionCommand extends Command {
         pkg.set("version", this.updatesVersions.get(pkg.name));
 
         // update pkg dependencies
-        for (const [depName, resolved] of this.packageGraph.get(pkg.name).localDependencies) {
-          const depVersion = this.updatesVersions.get(depName);
+        //for (const [depName, resolved] of this.packageGraph.get(pkg.name).localDependencies) {
+          //const depVersion = this.updatesVersions.get(depName);
 
-          if (depVersion && resolved.type !== "directory") {
-            // don't overwrite local file: specifiers, they only change during publish
-            pkg.updateLocalDependency(resolved, depVersion, this.savePrefix);
-          }
-        }
+          //if (depVersion && resolved.type !== "directory") {
+            //// don't overwrite local file: specifiers, they only change during publish
+            //pkg.updateLocalDependency(resolved, depVersion, this.savePrefix);
+          //}
+        //}
 
         return Promise.all([updateLockfileVersion(pkg), pkg.serialize()]).then(([lockfilePath]) => {
           // commit the updated manifest
